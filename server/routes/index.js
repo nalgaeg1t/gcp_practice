@@ -14,6 +14,7 @@ router.get('/test', function(req, res, next) {
 })
 
 router.get('/test2', function(req, res, next) {
+  console.log(teacher.read('test_id'))
   res.json(teacher.read('test_id'));
 })
 
