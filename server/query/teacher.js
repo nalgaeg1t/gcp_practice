@@ -1,58 +1,60 @@
 const connection = require('../db');
 
 module.exports = {
-    create: (id, pw) => {
-        connection.query(`
-            INSERT INTO TEACHER (TEACHER_ID, TEACHER_PW)
-            VALUES ("${id}", "${pw}")
-            `,
+  create: (id, pw, callback) => {
+    connection.query(
+      `
+        INSERT INTO TEACHER (TEACHER_ID, TEACHER_PW)
+        VALUES (?, ?)
+      `, [id, pw],
             
-            (err, result) => {
-                if(err) return {success: false, result: result};
-                return {success: true, result: result};
-            }
-        );
-    },
+      (err, result) => {
+        if(err) return callback({success: false, result: result});
+        return callback({success: true, result: result});
+      }
+    );
+  },
 
-    read: (id) => {
-        connection.query(`
-            SELECT *
-            FROM TEACHER WHERE teacher_id = "${id}"
-            `,
+  read: (id, callback) => {
+    connection.query(
+      `
+        SELECT *
+        FROM TEACHER WHERE TEACHER_ID = ?
+      `, [id],
             
-            (err, result) => {
-                if (err) return {success: false, result: result};
-                const resultArray = Object.values(JSON.parse(JSON.stringify(result)))
-                return {success: true, result: resultArray};
-            }
-        );
-    },
+      (err, result) => {
+        if (err) return callback({success: false, result: result});
+        return callback({success: true, result: result});
+      }
+    );
+  },
 
-    update: (id, pw) => {
-        connection.query(`
-            UPDATE TEACHER
-            SET TEACHER_PW = "${pw}"
-            WHERE TEACHER_ID = "${id}"
-            `,
+  update: (id, pw, callback) => {
+    connection.query(
+      `
+        UPDATE TEACHER
+        SET TEACHER_PW = ?
+        WHERE TEACHER_ID = ?
+      `, [pw, id],
     
-            (err, result) => {
-                if (err) return {success: false, result: result};
-                return {success: true, result: result};
-            }
-        );
-    },
+      (err, result) => {
+        if (err) return callback({success: false, result: result});
+        return callback({success: true, result: result});
+      }
+    );
+  },
 
-    delete: (id) => {
-        connection.query(`
-            DELETE FROM TEACHER
-            WHERE TEACHER_ID = "${id}"
-            `,
+  delete: (id, callback) => {
+    connection.query(
+      `
+        DELETE FROM TEACHER
+        WHERE TEACHER_ID = ?
+      `, [id],
     
-            (err, result) => {
-                if (err) return {success: false, result: result};
-                return {success: true, result: result};
-            }
-    
-        );
-    }
+      (err, result) => {
+        if (err) return callback({success: false, result: result});
+        return callback({success: false, result: result});
+      }
+    );
+  }
 }

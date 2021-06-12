@@ -3,19 +3,16 @@ var router = express.Router();
 
 var teacher = require('../query/teacher');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-
 router.get('/test', function(req, res, next) {
-  const result = teacher.create("test_id", "0000");
-  res.send(JSON.stringify(result));
+  teacher.read('test2', (result) => {
+    res.json(result);
+  });
 })
 
 router.get('/test2', function(req, res, next) {
-  console.log(teacher.read('test_id'))
-  res.json(teacher.read('test_id'));
+  teacher.create('test2', '1234', (result) => {
+    res.json(result);
+  });
 })
 
 module.exports = router;
