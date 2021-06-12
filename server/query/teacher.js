@@ -1,4 +1,5 @@
 const connection = require('../db');
+const jwt = require('../modules/jwt');
 
 module.exports = {
   create: (id, pw, callback) => {
@@ -56,5 +57,26 @@ module.exports = {
         return callback({success: false, result: result});
       }
     );
+  },
+
+  login: async (id, pw, callback) => {
+    connection.query(
+      `
+        SELECT TEACHER_PW
+        FROM TEACHER
+        WHERE TEACHER_ID=?
+      `, [id],
+
+      (err, result) => {
+        if (err) return callback({success: false, result: result});
+        
+        if (result[0].TEACHER_PW === pw) {
+          new Promise((res, rej) => res())
+          .then(() => jwt.sign(id))
+          .then(jwtToken => callback({success: true, result: jwtToken}))
+        }
+        else return callback({success: false, result: null});
+      }
+    )
   }
 }

@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const authUtil = require('../middlewares/auth').checkToken;
 
 var teacher = require('../query/teacher');
 
@@ -15,4 +16,13 @@ router.get('/test2', function(req, res, next) {
   });
 })
 
+router.get('/test3', function(req, res, next) {
+  teacher.login('test', '0000', (result) => {
+    res.json(result);
+  });
+})
+
+router.get('/test4', authUtil, function(req, res, next) {
+  res.json("DONE");
+})
 module.exports = router;
