@@ -13,4 +13,9 @@ router.get('/test', function(req, res, next) {
   res.send(JSON.stringify(result));
 })
 
+router.get('/test2', function(req, res, next) {
+  const result = teacher.read('test_id');
+  res.send(JSON.stringify(result));
+})
+
 module.exports = router;
