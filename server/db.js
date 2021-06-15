@@ -1,9 +1,9 @@
 const mysql = require('mysql');
 
 const connection = mysql.createConnection({
-    host: 'localhost',
+    host: '34.64.233.32', // 34.64.233.32
     user: 'root',
-    password: '0000',
+    password: 'process.env.DB_PASSWORD', // process.env.DB_PASSWORD
     database: 'popic',
     port: '3306'
 });
