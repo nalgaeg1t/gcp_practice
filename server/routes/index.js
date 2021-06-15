@@ -4,25 +4,20 @@ const authUtil = require('../middlewares/auth').checkToken;
 
 var teacher = require('../query/teacher');
 
-router.get('/test', function(req, res, next) {
-  teacher.read('test2', (result) => {
+router.get('/test/:id', function(req, res, next) {
+  teacher.read(req.params.id, (result) => {
     res.json(result);
   });
 })
 
-router.get('/test2', function(req, res, next) {
-  teacher.create('test2', '1234', (result) => {
+router.get('/test2/:id/:pw', function(req, res, next) {
+  teacher.create(req.params.id, req.params.pw, (result) => {
     res.json(result);
   });
 })
 
-router.get('/test3', function(req, res, next) {
-  teacher.login('test', '0000', (result) => {
-    res.json(result);
-  });
-})
-
-router.get('/test4', authUtil, function(req, res, next) {
+router.get('/test3', authUtil, function(req, res, next) {
   res.json("DONE");
 })
+
 module.exports = router;
