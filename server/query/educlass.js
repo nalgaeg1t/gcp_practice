@@ -12,7 +12,7 @@ module.exports = {
               
         (err, result) => {
           if(err) return callback({success: false, result: result});
-          return callback({success: true, result: result});
+          return callback({success: true, result: result, code: code});
         }
       );
     },
@@ -26,7 +26,7 @@ module.exports = {
               
         (err, result) => {
           if (err) return callback({success: false, result: result});
-          return callback({success: true, result: result});
+          return callback({success: true, result: result, code: code});
         }
       );
     },
