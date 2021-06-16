@@ -9,7 +9,6 @@ var poem = require('../query/poem');
 var picture = require('../query/picture');
 
 
-
 router.get('/teacher/create/:id/:pw', function(req, res, next) {
   teacher.create(req.params.id, req.params.pw, (result) => {
     res.json(result);
