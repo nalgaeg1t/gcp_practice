@@ -45,9 +45,9 @@ router.get('/educlass/delete/:educlass_id', function(req, res, next) {
   })
 });
 
-router.get('/poem/create', function(req, res, next) {
+router.get('/poem/create/:educlass_id', function(req, res, next) {
   let id = Math.floor(Math.random() * 100000);
-  poem.create(req.query.educlass_id, id, req.query.content, req.query.title, req.query.description, (result) => {
+  poem.create(req.params.educlass_id, id, req.query.content, req.query.title, req.query.description, (result) => {
     res.json(result);
   });
 });
