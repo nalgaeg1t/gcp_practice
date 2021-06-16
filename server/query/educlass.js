@@ -11,8 +11,8 @@ module.exports = {
         `, [teacher_id, id, name, description, icon, code],
               
         (err, result) => {
-          if(err) return callback({success: false});
-          return callback({success: true});
+          if(err) return callback({success: false, result: result});
+          return callback({success: true, result: result});
         }
       );
     },
