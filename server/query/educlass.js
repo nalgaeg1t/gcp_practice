@@ -2,9 +2,7 @@ const connection = require('../db');
 
 module.exports = {
     create: (teacher_id, name, description, icon) => {
-      console.log("A");
-        let code = Math.random().toString(36).substr(0, 20);
-      console.log("B");
+      let code = Math.random().toString(36).substr(0, 20);
       connection.query(
         `
           INSERT INTO EDUCLASS (TEACHER_ID, EDUCLASS_ID, EDUCLASS_NAME, EDUCLASS_DESCRIPTION, EDUCLASS_ICON, EDUCLASS_CODE)
@@ -12,6 +10,7 @@ module.exports = {
         `, [teacher_id, code, name, description, icon, code],
               
         (err, result) => {
+          console.log(code);
           if(err) return callback({success: false, result: result});
           return callback({success: true, result: result});
         }
