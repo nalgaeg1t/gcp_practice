@@ -22,7 +22,7 @@ router.get('/test3', authUtil, function(req, res, next) {
 })
 
 router.get('/educlass/create', function(req, res, next) { 
-  educlass.create(req.query.teacherid, req.query.name, req.query.description, req.query.icon, (result) => {
+  educlass.create(req.query.teacher_id, req.query.name, req.query.description, req.query.icon, (result) => {
     res.join(result);
   });
 })

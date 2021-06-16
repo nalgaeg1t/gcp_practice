@@ -5,9 +5,9 @@ module.exports = {
       let code = Math.random().toString(36).substr(0, 20);
       connection.query(
         `
-          INSERT INTO EDUCLASS (TEACHER_ID, EDUCLASS_NAME, EDUCLASS_DESCRIPTION, EDUCLASS_ICON, EDUCLASS_CODE)
+          INSERT INTO EDUCLASS (TEACHER_ID, EDUCLASS_ID, EDUCLASS_NAME, EDUCLASS_DESCRIPTION, EDUCLASS_ICON, EDUCLASS_CODE)
           VALUES (?, ?)
-        `, [teacher_id, name, description, icon, code],
+        `, [teacher_id, code, name, description, icon, code],
               
         (err, result) => {
           if(err) return callback({success: false, result: result});
