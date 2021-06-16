@@ -21,10 +21,11 @@ router.get('/test3', authUtil, function(req, res, next) {
   res.json("DONE");
 })
 
-router.get('/educlass/create/:teacher_id/:name/:description/:icon'), function(req, res, next) { 
-  educlass.create(req.params.teacher_id, req.params.name, req.params.description, req.params.icon, (result) => {
+router.get('/educlass/create', function(req, res, next) { 
+  educlass.create(req.query.teacher_id, req.query.name, req.query.description, req.query.icon, (result) => {
     res.join(result);
   });
-}
-// teacher_id, name, description, icon
+})
+
+
 module.exports = router;
