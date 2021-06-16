@@ -9,7 +9,7 @@ module.exports = {
         `
           INSERT INTO EDUCLASS (TEACHER_ID, EDUCLASS_ID, EDUCLASS_NAME, EDUCLASS_DESCRIPTION, EDUCLASS_ICON, EDUCLASS_CODE)
           VALUES (?, ?, ?, ?, ?, ?)
-        `, [teacher_id, id, name, description, icon, code],
+        `, [teacher_id, id, name, description, null, code],
               
         (err, result) => {
           if(err) return callback({success: false, result: result});
