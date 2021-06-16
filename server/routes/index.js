@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+
 const authUtil = require('../middlewares/auth').checkToken;
 
 var teacher = require('../query/teacher');
@@ -140,11 +141,17 @@ router.get('/picture/readAll', function(req, res, next) {
   });
 });
 
-router.get('/picture/update/:picture_id', function(req, res, next) {
-  picture.update(req.params.picture_id, req.query.image, (result) => {
+router.post('picture/upate:picture_id', function(req, res, next) {
+  picture.update(req.params.picture_id, req.body.image, (result) => {
     res.json(result);
-  });
+  })
 });
+
+// router.get('/picture/update/:picture_id', function(req, res, next) {
+//   picture.update(req.params.picture_id, req.query.image, (result) => {
+//     res.json(result);
+//   });
+// });
 
 router.get('/picture/delete/:picture_id', function(req, res, next) {
   picture.delete(req.params.picture_id, (result) => {
