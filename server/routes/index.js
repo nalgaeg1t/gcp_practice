@@ -34,13 +34,13 @@ router.get('/educlass/read/:teacher_id', function(req, res, next) {
 })
 
 router.get('/educlass/update/:educlass_id', function(req, res, next) {
-  educlass.update(req.params.educlass_id, req.query.name, req.query.description, req.query.icon, (result) => {
+  educlass.update(parseInt(req.params.educlass_id), req.query.name, req.query.description, req.query.icon, (result) => {
     res.json(result);
   });
 });
 
 router.get('/educlass/delete/:educlass_id', function(req, res, next) {
-  educlass.delete(req.params.educlass_id, (result) => {
+  educlass.delete(parseInt(req.params.educlass_id), (result) => {
     res.json(result);
   })
 });
