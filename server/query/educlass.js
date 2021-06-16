@@ -12,7 +12,6 @@ module.exports = {
         `, [teacher_id, code, name, description, icon, code],
               
         (err, result) => {
-          console.log(code);
           if(err) return callback({success: false, result: result});
           return callback({success: true, result: result});
         }
