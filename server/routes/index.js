@@ -28,6 +28,12 @@ router.get('/teacher/readAll', function(req, res, next) {
   });
 });
 
+router.get('/teacher/delete/:teacher_id', function(req, res, next) {
+  teacher.delete(req.params.teacher_id, (result) => {
+    res.json(result);
+  });
+});
+
 router.get('/student/create/:id/:pw', function(req, res, next) {
   student.create(req.params.id, req.params.pw, (result) => {
     res.json(result);
@@ -46,7 +52,11 @@ router.get('/student/readAll', function(req, res, next) {
   });
 });
 
-
+router.get('/student/delete/:teacher_id', function(req, res, next) {
+  student.delete(req.params.teacher_id, (result) => {
+    res.json(result);
+  });
+});
 
 
 router.get('/educlass/create', function(req, res, next) {
