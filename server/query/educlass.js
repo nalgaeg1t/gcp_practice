@@ -3,7 +3,7 @@ const connection = require('../db');
 
 
 module.exports = {
-    create: (teacher_id, id, name, description, icon, code) => {
+    create: (teacher_id, id, name, description, icon, code, callback) => {
       connection.query(
         `
           INSERT INTO EDUCLASS (TEACHER_ID, EDUCLASS_ID, EDUCLASS_NAME, EDUCLASS_DESCRIPTION, EDUCLASS_ICON, EDUCLASS_CODE)
