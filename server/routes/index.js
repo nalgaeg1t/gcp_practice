@@ -21,11 +21,12 @@ router.get('/test3', authUtil, function(req, res, next) {
   res.json("DONE");
 })
 
-router.get('/educlass/create', function(req, res, next) { 
-  educlass.create(req.query.teacher_id, req.query.name, req.query.description, req.query.icon, (result) => {
+router.get('/educlass/create', function(req, res, next) {
+  let code = Math.random().toString(36).substr(2, 5) + Math.random().toString(36).substr(2, 5) + Math.random().toString(36).substr(2, 5) + Math.random().toString(36).substr(2, 5);
+  educlass.create(code, req.query.teacher_id, req.query.name, req.query.description, req.query.icon, (result) => {
     console.log(result);
   });
-  // res.json([req.query.teacher_id, req.query.name, req.query.description, req.query.icon]);
+  // res.json([code, req.query.teacher_id, req.query.name, req.query.description, req.query.icon]);
 })
 
 router.get('/educlass/read', function(req, res, next) {

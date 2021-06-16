@@ -3,8 +3,7 @@ const connection = require('../db');
 
 
 module.exports = {
-    create: (teacher_id, name, description, icon) => {
-      let code = Math.random().toString(36).substr(2, 5) + Math.random().toString(36).substr(2, 5) + Math.random().toString(36).substr(2, 5) + Math.random().toString(36).substr(2, 5);
+    create: (code, teacher_id, name, description, icon) => {
       connection.query(
         `
           INSERT INTO EDUCLASS (TEACHER_ID, EDUCLASS_ID, EDUCLASS_NAME, EDUCLASS_DESCRIPTION, EDUCLASS_ICON, EDUCLASS_CODE)
