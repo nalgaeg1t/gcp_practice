@@ -22,10 +22,10 @@ router.get('/test3', authUtil, function(req, res, next) {
 })
 
 router.get('/educlass/create', function(req, res, next) { 
-  // educlass.create(req.query.teacher_id, req.query.name, req.query.description, req.query.icon, (result) => {
-  //   res.json(result);
-  // });
-  res.json([req.query.teacher_id, req.query.name, req.query.description, req.query.icon]);
+  educlass.create(req.query.teacher_id, req.query.name, req.query.description, req.query.icon, (result) => {
+    res.json(result);
+  });
+  // res.json([req.query.teacher_id, req.query.name, req.query.description, req.query.icon]);
 })
 
 
