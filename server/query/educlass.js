@@ -21,7 +21,7 @@ module.exports = {
       connection.query(
         `
           SELECT *
-          FROM EDUCLASS WHERE EDUCLASS_ID = ?
+          FROM EDUCLASS WHERE TEACHER_ID = ?
         `, [id],
               
         (err, result) => {
