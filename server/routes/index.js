@@ -124,7 +124,7 @@ router.get('/poem/delete/:poem_id', function(req, res, next) {
 
 router.post('/picture/create/:poem_id/:student_id', function(req, res, next) {
   let id = Math.floor(Math.random() * 100000);
-  picture.create(req.params.poem_id, req.params.student_id, req.body.image, id, (result) => {
+  picture.create(req.params.student_id, req.params.poem_id, req.body.image, id, (result) => {
     res.json(result);
   });
 });
