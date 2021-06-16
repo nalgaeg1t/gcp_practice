@@ -19,7 +19,7 @@ router.get('/teacher/read/:teacher_id', function(req, res, next) {
   });
 });
 
-router.get('teacher/readAll', function(req, res, next) {
+router.get('/teacher/readAll', function(req, res, next) {
   teacher.readAll((result) => {
     res.json(result);
   });
@@ -39,7 +39,7 @@ router.get('/educlass/read/:teacher_id', function(req, res, next) {
   });
 })
 
-router.get('educlass/readAll', function(req, res, next) {
+router.get('/educlass/readAll', function(req, res, next) {
   educlass.readAll((result) => {
     res.json(result);
   });
@@ -70,7 +70,7 @@ router.get('/poem/read/:educlass_id', function(req, res, next) {
   });
 });
 
-router.get('poem/readAll', function(req, res, next) {
+router.get('/poem/readAll', function(req, res, next) {
   poem.readAll((result) => {
     res.json(result);
   });
@@ -101,7 +101,7 @@ router.get('/picture/read/:poem_id', function(req, res, next) {
   });
 });
 
-router.get('picture/readAll', function(req, res, next) {
+router.get('/picture/readAll', function(req, res, next) {
   picture.readAll((result) => {
     res.json(result);
   });
