@@ -3,9 +3,12 @@ var router = express.Router();
 const authUtil = require('../middlewares/auth').checkToken;
 
 var teacher = require('../query/teacher');
+var student = require('../query/student');
 var educlass = require('../query/educlass');
 var poem = require('../query/poem');
 var picture = require('../query/picture');
+
+
 
 router.get('/teacher/create/:id/:pw', function(req, res, next) {
   teacher.create(req.params.id, req.params.pw, (result) => {
@@ -24,6 +27,27 @@ router.get('/teacher/readAll', function(req, res, next) {
     res.json(result);
   });
 });
+
+router.get('/student/create/:id/:pw', function(req, res, next) {
+  student.create(req.params.id, req.params.pw, (result) => {
+    res.json(result);
+  });
+});
+
+router.get('/student/read/:teacher_id', function(req, res, next) {
+  student.read(req.params.teacher_id, (result) => {
+    res.json(result);
+  });
+});
+
+router.get('/student/readAll', function(req, res, next) {
+  student.readAll((result) => {
+    res.json(result);
+  });
+});
+
+
+
 
 router.get('/educlass/create', function(req, res, next) {
   let id = Math.floor(Math.random() * 100000);
