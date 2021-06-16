@@ -15,6 +15,15 @@ module.exports = {
       );
     },
   
+    readAll: (callback) => {
+      connection.query(
+        `SELECT * FROM PICTURE`, (err, result) => {
+          if (err) return callback({success: false, result: result});
+          return callback({success: true, result: result});
+        }
+      )
+    },
+
     read: (id, callback) => {
       connection.query(
         `

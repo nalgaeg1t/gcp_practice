@@ -30,7 +30,16 @@ module.exports = {
         }
       );
     },
-  
+
+    readAll: (callback) => {
+      connection.query(
+        `SELECT * FROM EDUCLASS`, (err, result) => {
+          if (err) return callback({success: false, result: result});
+          return callback({success: true, result: result});
+        }
+      )
+    },
+
     update: (id, name, description, icon, callback) => {
       connection.query(
         `

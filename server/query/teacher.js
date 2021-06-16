@@ -30,6 +30,15 @@ module.exports = {
     );
   },
 
+  readAll: (callback) => {
+    connection.query(
+      `SELECT * FROM TEACHER`, (err, result) => {
+        if (err) return callback({success: false, result: result});
+        return callback({success: true, result: result});
+      }
+    )
+  },
+
   update: (id, pw, callback) => {
     connection.query(
       `

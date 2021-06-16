@@ -29,6 +29,15 @@ module.exports = {
       );
     },
   
+    readAll: (callback) => {
+      connection.query(
+        `SELECT * FROM POEM`, (err, result) => {
+          if (err) return callback({success: false, result: result});
+          return callback({success: true, result: result});
+        }
+      )
+    },
+
     update: (id, title, content, description, callback) => {
       connection.query(
         `

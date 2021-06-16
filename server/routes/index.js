@@ -19,6 +19,12 @@ router.get('/teacher/read/:teacher_id', function(req, res, next) {
   });
 });
 
+router.get('teacher/readAll', function(req, res, next) {
+  teacher.readAll((result) => {
+    res.json(result);
+  });
+});
+
 router.get('/educlass/create', function(req, res, next) {
   let id = Math.floor(Math.random() * 100000);
   let code = Math.random().toString(36).substr(2, 5) + Math.random().toString(36).substr(2, 5) + Math.random().toString(36).substr(2, 5) + Math.random().toString(36).substr(2, 5);
@@ -32,6 +38,12 @@ router.get('/educlass/read/:teacher_id', function(req, res, next) {
     res.json(result);
   });
 })
+
+router.get('educlass/readAll', function(req, res, next) {
+  educlass.readAll((result) => {
+    res.json(result);
+  });
+});
 
 router.get('/educlass/update/:educlass_id', function(req, res, next) {
   educlass.update(parseInt(req.params.educlass_id), req.query.name, req.query.description, req.query.icon, (result) => {
@@ -58,6 +70,12 @@ router.get('/poem/read/:educlass_id', function(req, res, next) {
   });
 });
 
+router.get('poem/readAll', function(req, res, next) {
+  poem.readAll((result) => {
+    res.json(result);
+  });
+});
+
 router.get('/poem/update/:poem_id', function(req, res, next) {
   poem.update(req.params.poem_id, req.query.title, req.query.content, req.query.description, (result) => {
     res.json(result);
@@ -79,6 +97,12 @@ router.get('/picture/create/:poem_id/:student_id', function(req, res, next) {
 
 router.get('/picture/read/:poem_id', function(req, res, next) {
   picture.read(req.params.poem_id, (result) => {
+    res.json(result);
+  });
+});
+
+router.get('picture/readAll', function(req, res, next) {
+  picture.readAll((result) => {
     res.json(result);
   });
 });
