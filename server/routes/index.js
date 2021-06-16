@@ -4,22 +4,20 @@ const authUtil = require('../middlewares/auth').checkToken;
 
 var teacher = require('../query/teacher');
 var educlass = require('../query/educlass');
+var poem = require('../query/poem');
 
-router.get('/test/:id', function(req, res, next) {
-  teacher.read(req.params.id, (result) => {
-    res.json(result);
-  });
-})
 
-router.get('/test2/:id/:pw', function(req, res, next) {
+router.get('/teacher/create/:id/:pw', function(req, res, next) {
   teacher.create(req.params.id, req.params.pw, (result) => {
     res.json(result);
   });
-})
+});
 
-router.get('/test3', authUtil, function(req, res, next) {
-  res.json("DONE");
-})
+router.get('/teacher/read/:teacher_id', function(req, res, next) {
+  teacher.read(req.params.teacher_id, (result) => {
+    res.json(result);
+  });
+});
 
 router.get('/educlass/create', function(req, res, next) {
   let id = Math.floor(Math.random() * 100000);
@@ -29,10 +27,46 @@ router.get('/educlass/create', function(req, res, next) {
   });
 })
 
-router.get('/educlass/read', function(req, res, next) {
-  educlass.read(req.query.teacher_id, (result) => {
+router.get('/educlass/read/:teacher_id', function(req, res, next) {
+  educlass.read(req.params.teacher_id, (result) => {
+    res.json(result);
+  });
+})
+
+router.get('/educlass/update/:educlass_id', function(req, res, next) {
+  educlass.update(req.params.educlass_id, req.query.name, req.query.description, req.query.icon, (result) => {
+    res.json(result);
+  });
+});
+
+router.get('/educlass/delete/:educlass_id', function(req, res, next) {
+  educlass.delete(req.params.educlass_id, (result) => {
+    res.json(result);
+  })
+});
+
+router.get('/poem/create', function(req, res, next) {
+  let id = Math.floor(Math.random() * 100000);
+  poem.create(req.query.educlass_id, id, req.query.content, req.query.title, req.query.description, (result) => {
+    res.json(result);
+  });
+});
+
+router.get('/poem/read/:educlass_id', function(req, res, next) {
+  poem.read(req.params.educlass_id, (result) => {
+    res.json(result);
+  });
+});
+
+router.get('/poem/update/:poem_id', function(req, res, next) {
+  poem.update(req.params.poem_id, req.query.title, req.query.content, req.query.description, (result) => {
+    res.json(result);
+  });
+});
+
+router.get('/poem/delete/:poem_id', function(req, res, next) {
+  poem.delete(req.params.poem_id, (result) => {
     res.json(result);
   })
 })
-
 module.exports = router;

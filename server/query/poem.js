@@ -1,14 +1,12 @@
 const connection = require('../db');
 
-
-
 module.exports = {
-    create: (teacher_id, id, name, description, icon, code, callback) => {
+    create: (educlass_id, id, content, title, description, callback) => {
       connection.query(
         `
-          INSERT INTO EDUCLASS (TEACHER_ID, EDUCLASS_ID, EDUCLASS_NAME, EDUCLASS_DESCRIPTION, EDUCLASS_ICON, EDUCLASS_CODE)
-          VALUES (?, ?, ?, ?, ?, ?)
-        `, [teacher_id, id, name, description, icon, code],
+          INSERT INTO POEM (EDUCLASS_ID, POEM_ID, POEM_CONTENT, POEM_TITLE, POEM_DESCRIPTION)
+          VALUES (?, ?, ?, ?, ?)
+        `, [educlass_id, id, content, title, description],
               
         (err, result) => {
           if(err) return callback({success: false, result: result});
@@ -21,7 +19,7 @@ module.exports = {
       connection.query(
         `
           SELECT *
-          FROM EDUCLASS WHERE EDUCLASS_ID = ?
+          FROM POEM WHERE EDUCLASS_ID = ?
         `, [id],
               
         (err, result) => {
@@ -31,13 +29,13 @@ module.exports = {
       );
     },
   
-    update: (id, name, description, icon, callback) => {
+    update: (id, title, content, description, callback) => {
       connection.query(
         `
-          UPDATE EDUCLASS
-          SET EDUCLASS_NAME = ?, EDUCLASS_DESCRIPTION = ? EDUCLASS_ICON = ?
-          WHERE EDUCLASS_ID = ?
-        `, [name, description, icon, id],
+          UPDATE POEM
+          SET POEM_TITLE = ?, POEM_CONTENT = ? POEM_DESCRIPTION = ?
+          WHERE POEM_ID = ?
+        `, [title, content, description, id],
       
         (err, result) => {
           if (err) return callback({success: false, result: result});
@@ -49,8 +47,8 @@ module.exports = {
     delete: (id, callback) => {
       connection.query(
         `
-          DELETE FROM EDUCLASS
-          WHERE EDUCLASS_ID = ?
+          DELETE FROM POEM
+          WHERE POEM_ID = ?
         `, [id],
       
         (err, result) => {
