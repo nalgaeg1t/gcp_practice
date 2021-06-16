@@ -8,7 +8,7 @@ module.exports = {
       connection.query(
         `
           INSERT INTO EDUCLASS (TEACHER_ID, EDUCLASS_ID, EDUCLASS_NAME, EDUCLASS_DESCRIPTION, EDUCLASS_ICON, EDUCLASS_CODE)
-          VALUES (?, ?)
+          VALUES (?, ?, ?, ?, ?, ?)
         `, [teacher_id, code, name, description, icon, code],
               
         (err, result) => {
